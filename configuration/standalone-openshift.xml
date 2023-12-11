@@ -443,8 +443,12 @@
         </interface>
     </interfaces>
     <socket-binding-group name="standard-sockets" default-interface="public" port-offset="0">
-        <socket-binding name="http" port="${jboss.http.port:8080}"/>
-        <socket-binding name="https" port="${jboss.https.port:8443}"/>
+        <socket-binding name="http" port="${jboss.http.port:8080}">
+            <client-mapping destination-address="standalone-as-cm-0.standalone-as-cm-headless"/>
+        </socket-binding>
+        <socket-binding name="https" port="${jboss.https.port:8443}">
+            <client-mapping destination-address="standalone-as-cm-0.standalone-as-cm-headless"/>
+        </socket-binding>
         <socket-binding name="jgroups-mping" interface="private" multicast-address="${jboss.default.multicast.address:230.0.0.4}" multicast-port="45700"/>
         <socket-binding name="jgroups-tcp" interface="private" port="7600"/>
         <socket-binding name="jgroups-udp" interface="private" port="55200" multicast-address="${jboss.default.multicast.address:230.0.0.4}" multicast-port="45688"/>
